@@ -3,16 +3,21 @@ const puppeteer = require("puppeteer");
 (async function () {
   let totalVideos = 0;
   const browser = await puppeteer.launch({
+    //headless makes the chromium browser visible
     headless: false,
     slowMo: 500,
+    //These 2 help to open the browser in full screen
     defaultViewport: null,
     args: ["--start-maximized"],
   });
   const page = await browser.newPage();
+  //Go to youtube playlist
   await page.goto(
     "https://www.youtube.com/playlist?list=PLMC9KNkIncKtPzgY-5rmhvj7fax8fdxoj"
   );
   await page.waitForSelector(".style-scope.yt-formatted-string");
+  //evaluate function works in the browser 
+  //the below function get the total number of videos in the playlist
   totalVideos = await page.evaluate(function () {
     let a = document.querySelectorAll(".style-scope.yt-formatted-string");
     let s = a[1].innerText;
@@ -22,13 +27,14 @@ const puppeteer = require("puppeteer");
     return Number(s);
   });
 
+  //this evaluate call gets the duration of entire playlist in hours
   let ans = await page.evaluate(async function (tv) {
     //initially 100 videos are loaded and we select them all
     let a = document.querySelectorAll(
       "#text.style-scope.ytd-thumbnail-overlay-time-status-renderer"
     );
 
-
+  //this function converts time stamp string from video card to seconds
     function hmsToSecondsOnly(str) {
       var p = str.split(':'),
           s = 0, m = 1;
@@ -42,18 +48,15 @@ const puppeteer = require("puppeteer");
   }
 
 
-    //setInterval function
-
+    // we are creating a promise such that it will resolve when all videos are loaded until then it will keep scrolling
     let p = new Promise(function (resolve, reject) {
       let interval = setInterval(function () {
-        //currently selected video hai unki length kya total video ke length ke barabar hogyi?
         if (a.length != tv) {
-          //100!=200
           let videoCardContainer = document.querySelector("#contents");
           window.scrollTo(0, videoCardContainer.scrollHeight);
           a = document.querySelectorAll(
             "#text.style-scope.ytd-thumbnail-overlay-time-status-renderer"
-          ); //200
+          ); 
         } else {
           clearInterval(interval);
           resolve();
@@ -61,6 +64,7 @@ const puppeteer = require("puppeteer");
       }, 500);
     });
 
+    //waiting for promise to resolve so that we can asure the a will contain all videos
     await p;
     let allDuration = [];
     for (let i = 0; i < a.length; i++) {
