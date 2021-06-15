@@ -1,0 +1,8 @@
+Practice 
+1- When we open this website it loads a entry add. Automate to close this ad.
+
+2- You are given a demo bank account which has a transaction table. Using automation login to this account and find where did you spend the maximum amount of money?
+
+3- You are given an e-commerce store. You have to login and download images of all products.
+
+4- Implement web scrapping using automation (github scrapper through puppeteer)
