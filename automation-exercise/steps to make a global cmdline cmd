@@ -1,0 +1,9 @@
+1- check whether you have package.json file or not(if not use npm init in termianl)
+2- add shebang syntax at top of your script(#!/usr/bin/env node)
+3- in package.json file add the following key
+ "bin":{
+    "my-cmd":"path to your script"
+  }
+
+4- use npm link in terminal 
+
