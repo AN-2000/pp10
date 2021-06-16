@@ -1,0 +1,15 @@
+part - 1(time: 20 mins) 7:26pm
+topicsPage => 3 topic lare the 
+for each topic page we were getting top 5 projects (just for checking)
+
+part - 2(time: 15 mins ) 8:16
+for each project we were getting their issues (just top 1) also save them in json
+
+
+//JSON should contain the below things 
+data:{
+    topic1:["link1","link2",....], //links are of issues 
+    topic2:["link1","link2",....],
+    topic3:["link1","link2",....],
+}
+
