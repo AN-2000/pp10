@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <button id="inc">+</button>
+    <p>0</p>
+    <button id="dc">-</button>
+
+
+
+    <script>
+        let incBtn = document.querySelector("#inc")
+        let dcBtn = document.querySelector("#dc")
+        let p = document.querySelector("p")
+
+        incBtn.addEventListener("click",function(){
+            let oldValue = Number(p.innerText)
+            let newValue = oldValue + 1
+            p.innerText = newValue
+        })
+
+        dcBtn.addEventListener("click",function(){
+            let oldValue = Number(p.innerText)
+            let newValue = oldValue - 1
+            p.innerText = newValue
+        })
+    </script>
+</body>
+</html>

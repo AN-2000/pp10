@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hello</h1>
+    <script>
+      let h1Tag = document.querySelector("h1");
+      h1Tag.style.backgroundColor = "red";
+
+      let c = 0;
+
+      h1Tag.addEventListener("click", function () {
+        c++;
+        console.log(c);
+      });
+    </script>
+  </body>
+</html>
