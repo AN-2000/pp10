@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  height: 100vh;
+}
+
+.navbar {
+  background-color: gray;
+  height: 15vh;
+  display: flex;
+}
+
+.grid {
+  height: 85vh;
+}
+
+.filters,
+.action-buttons {
+  border: 1px solid;
+  height: 50%;
+  background-color: red;
+  margin-top: calc((25 / 100) * 15vh);
+  margin-left: 5rem;
+}
+
+.filters {
+  width: 16rem;
+  display: flex;
+}
+
+.action-buttons {
+  width: 8rem;
+  display: flex;
+}
+
+.filter {
+  height: 100%;
+  width: 25%;
+  border: 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter:hover {
+  background-color: green;
+}
+
+.add,
+.delete {
+  height: 100%;
+  width: 50%;
+  border: 1px solid;
+  font-size: 3rem;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex; 
+  /* default flex dirn => horizontal  */
+  justify-content: center; 
+  /* this will set your children in horizontal center  */
+  align-items: center;
+  /* this will set your children in vertical center  */
+}
+
+.add:hover,
+.delete:hover {
+  background-color: green;
+}
+
+
+.filter div{
+    height: 80%;
+    width: 80%;
+    border: 1px solid;
+    border-radius: 6px;
+}
+
+.pink{
+    background-color: pink;
+}
+
+.green{
+    background-color: green;
+}
+
+.blue{
+    background-color: blue;
+}
+
+.black{
+    background-color: black;
+}
