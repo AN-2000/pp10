@@ -107,6 +107,8 @@ body {
     background-color: red;
     position: fixed;
     top: 20vh;
+    /* ye left wala 50% jo hai wo body ki width ka hai  */
     left: 50%;
+    /* ye translate wala jo 50% hai wo khudke element ka hai  */
     transform: translateX(-50%);
 }
