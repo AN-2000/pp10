@@ -1,10 +1,11 @@
-let addBtn = document.querySelector(".add");
-let body = document.querySelector("body");
+// let addBtn = document.querySelector(".add");
+// let body = document.querySelector("body");
 
-addBtn.addEventListener("click", function () {
-  let div = document.createElement("div"); //<div></div>
+// addBtn.addEventListener("click", function () {
 
-  div.classList.add("modal"); //<div class="modal"></div>
+//   let div = document.createElement("div"); //<div></div>
 
-  body.append(div);
-});
+//   div.classList.add("modal"); //<div class="modal"></div>
+
+//   body.append(div);
+// });
