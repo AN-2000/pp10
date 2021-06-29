@@ -1,7 +1,9 @@
 let addBtn = document.querySelector(".add");
 let body = document.querySelector("body");
 
-let grid = document.querySelector(".grid")
+let grid = document.querySelector(".grid");
+
+let colors = ["pink", "blue", "green", "black"];
 
 addBtn.addEventListener("click", function () {
   let preModal = document.querySelector(".modal");
@@ -41,7 +43,7 @@ addBtn.addEventListener("click", function () {
 
   let taskInnerContainer = div.querySelector(".task-inner-container");
 
-  taskInnerContainer.addEventListener("keypress", function (e) {
+  taskInnerContainer.addEventListener("keydown", function (e) {
     if (e.key == "Enter") {
       let ticketDiv = document.createElement("div");
       ticketDiv.classList.add("ticket");
@@ -54,9 +56,32 @@ addBtn.addEventListener("click", function () {
           ${e.currentTarget.innerText}
         </div>`;
 
-        grid.append(ticketDiv)
+      let ticketColorDiv = ticketDiv.querySelector(".ticket-color");
+
+      ticketColorDiv.addEventListener("click", function (e) {
+        // let colors = ["pink", "blue", "green", "black"];
+
+        let currColor = e.currentTarget.classList[1]; //green
+
+        let index = -1;
+        for (let i = 0; i < colors.length; i++) {
+          if (colors[i] == currColor) index = i;
+        }
+
+        index++;
+        index = index % 4;
+
+        let newColor = colors[index];
+
+        ticketColorDiv.classList.remove(currColor);
+        ticketColorDiv.classList.add(newColor);
+      });
+
+      grid.append(ticketDiv);
 
       div.remove();
+    } else if(e.key === "Escape"){
+        div.remove()
     }
   });
 

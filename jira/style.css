@@ -18,6 +18,9 @@ body {
 
 .grid {
   height: 85vh;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .filters,
@@ -167,6 +170,7 @@ body {
 
 
 .ticket{
+  margin: 10px;
   height: 12rem;
   width: 20rem;
   border: 1px solid;
