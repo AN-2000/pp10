@@ -72,17 +72,35 @@ addBtn.addEventListener("click", function () {
 
   taskInnerContainer.addEventListener("keydown", function (e) {
     if (e.key == "Enter") {
+      let id = uid();
+      let task = e.currentTarget.innerText;
+
+      // step1 => jobhi data hai localstorage use lekr aao
+
+      let allTickets = JSON.parse(localStorage.getItem("AllTickets"));
+
+      // step2 => usko update kro
+
+      let ticketObj = {
+        color: ticketColor,
+        taskValue: task,
+      };
+
+      allTickets[id] = ticketObj;
+
+      // step3 => wapis updated object ko localstorage me save krdo
+
+      localStorage.setItem("AllTickets", JSON.stringify(allTickets));
+
       let ticketDiv = document.createElement("div");
       ticketDiv.classList.add("ticket");
-
-      let id = uid();
 
       ticketDiv.innerHTML = ` <div class="ticket-color ${ticketColor}"></div>
         <div class="ticket-id">
           #${id}
         </div>
         <div class="actual-task">
-          ${e.currentTarget.innerText}
+          ${task}
         </div>`;
 
       let ticketColorDiv = ticketDiv.querySelector(".ticket-color");
