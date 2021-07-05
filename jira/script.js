@@ -9,6 +9,14 @@ let deleteBtn = document.querySelector(".delete");
 
 let deleteMode = false;
 
+if (localStorage.getItem("AllTickets") == undefined) {
+  let allTickets = {};
+
+  allTickets = JSON.stringify(allTickets);
+
+  localStorage.setItem("AllTickets", allTickets);
+}
+
 deleteBtn.addEventListener("click", function (e) {
   if (e.currentTarget.classList.contains("delete-selected")) {
     e.currentTarget.classList.remove("delete-selected");
@@ -20,12 +28,10 @@ deleteBtn.addEventListener("click", function (e) {
 });
 
 addBtn.addEventListener("click", function () {
+  //delete mode ko band krna h
 
-  //delete mode ko band krna h 
-
-  deleteBtn.classList.remove("delete-selected")
-  deleteMode = false
-
+  deleteBtn.classList.remove("delete-selected");
+  deleteMode = false;
 
   let preModal = document.querySelector(".modal");
 
