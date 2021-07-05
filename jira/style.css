@@ -73,7 +73,8 @@ body {
 }
 
 .add:hover,
-.delete:hover {
+.delete:hover,
+.delete-selected {
   background-color: #747d8c;
 }
 
@@ -168,8 +169,7 @@ body {
   border: 5px solid #7f8c8d;
 }
 
-
-.ticket{
+.ticket {
   margin: 10px;
   height: 12rem;
   width: 20rem;
@@ -177,19 +177,19 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.ticket-color{
+.ticket-color {
   width: 100%;
   height: 8%;
 }
 
-.ticket-id{
+.ticket-id {
   width: 100%;
   height: 16%;
   padding: 5px;
   font-weight: bold;
 }
 
-.actual-task{
+.actual-task {
   width: 100%;
   height: 76%;
   padding: 10px;

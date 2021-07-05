@@ -5,7 +5,28 @@ let grid = document.querySelector(".grid");
 
 let colors = ["pink", "blue", "green", "black"];
 
+let deleteBtn = document.querySelector(".delete");
+
+let deleteMode = false;
+
+deleteBtn.addEventListener("click", function (e) {
+  if (e.currentTarget.classList.contains("delete-selected")) {
+    e.currentTarget.classList.remove("delete-selected");
+    deleteMode = false;
+  } else {
+    e.currentTarget.classList.add("delete-selected");
+    deleteMode = true;
+  }
+});
+
 addBtn.addEventListener("click", function () {
+
+  //delete mode ko band krna h 
+
+  deleteBtn.classList.remove("delete-selected")
+  deleteMode = false
+
+
   let preModal = document.querySelector(".modal");
 
   if (preModal != null) return;
@@ -48,9 +69,11 @@ addBtn.addEventListener("click", function () {
       let ticketDiv = document.createElement("div");
       ticketDiv.classList.add("ticket");
 
+      let id = uid();
+
       ticketDiv.innerHTML = ` <div class="ticket-color ${ticketColor}"></div>
         <div class="ticket-id">
-          #aeD34
+          #${id}
         </div>
         <div class="actual-task">
           ${e.currentTarget.innerText}
@@ -77,11 +100,17 @@ addBtn.addEventListener("click", function () {
         ticketColorDiv.classList.add(newColor);
       });
 
+      ticketDiv.addEventListener("click", function (e) {
+        if (deleteMode) {
+          e.currentTarget.remove();
+        }
+      });
+
       grid.append(ticketDiv);
 
       div.remove();
-    } else if(e.key === "Escape"){
-        div.remove()
+    } else if (e.key === "Escape") {
+      div.remove();
     }
   });
 
