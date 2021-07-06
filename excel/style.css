@@ -1,72 +1,103 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-    margin: 0;
+body {
+  margin: 0;
 }
 
-.container{
-    height: 100vh;
-    background-color: aqua;
+.container {
+  height: 100vh;
+  background-color: aqua;
 }
 
-.title-section{
-    outline: none;
-    height: 4%;
-    background-color: blue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
+.title-section {
+  outline: none;
+  height: 4%;
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 
-.menu-bar-section{
-    height: 4%;
-    background-color: red;
-    display: flex;
-    align-items: center;
+.menu-bar-section {
+  height: 4%;
+  background-color: red;
+  display: flex;
+  align-items: center;
 }
 
-.menu-bar-section div{
-    margin-left: 20px;
-    color: white;
+.menu-bar-section div {
+  margin-left: 20px;
+  color: white;
 }
 
-.menu-options-section{
-    height: 8%;
-    background-color: brown;
+.menu-options-section {
+  height: 8%;
+  background-color: brown;
 }
 
-.formula-section{
-    height: 4%;
-    background-color: cadetblue;
-    display: flex;
+.formula-section {
+  height: 4%;
+  background-color: cadetblue;
+  display: flex;
 }
 
-.formula-section .selected-cell-div{
-    height: 100%;
-    width: 20%;
-    background-color: rgb(86, 160, 12);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.formula-section .selected-cell-div {
+  height: 100%;
+  width: 20%;
+  background-color: rgb(86, 160, 12);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.formula-section input{
-    display: block;
-    width: 80%;
-    height: 100%;
-    border: none;
-    outline: none;
+.formula-section input {
+  display: block;
+  width: 80%;
+  height: 100%;
+  border: none;
+  outline: none;
 }
 
-.grid{
-    height: 76%;
-    background-color: yellow;
+.grid {
+  height: 76%;
+  background-color: yellow;
+  overflow: auto;
 }
 
-.sheets-section{
-    height: 4%;
-    background-color: blueviolet;
+.sheets-section {
+  height: 4%;
+  background-color: blueviolet;
+}
+
+.blank-corner {
+  height: 30px;
+  width: 30px;
+  background-color: gray;
+}
+
+.row-number-section {
+  display: inline-block;
+}
+
+.row-number {
+  height: 30px;
+  width: 30px;
+  background-color: green;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+}
+
+.column-tag-section {
+  height: 30px;
+  position: fixed;
+  background: bisque;
+  top: 20vh;
+  width: 100vw;
+  left: 30px;
 }
