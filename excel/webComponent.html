@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        height: 8rem;
+        width: 32rem;
+        display: flex;
+        position: relative;
+        left: -3rem;
+      }
+
+      .circle {
+        height: 8rem;
+        width: 8rem;
+        border-radius: 50%;
+        border: 5px solid white;
+        background-color: red;
+        position: relative;
+      }
+
+      .bg-circle{
+        background-image: url(https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500); background-size: contain;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="circle bg-circle" style="left: 9rem;"></div>
+      <div class="circle bg-circle" style="left: 6rem;"></div>
+      <div class="circle bg-circle"  style="left: 3rem;"></div>
+      <div
+        class="circle"
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 4rem;
+          color: white;
+          font-family: Arial, Helvetica, sans-serif;
+        "
+      >
+        +1
+      </div>
+    </div>
+  </body>
+</html>
