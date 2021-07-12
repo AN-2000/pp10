@@ -48,6 +48,7 @@ body {
   width: 20%;
   display: flex;
   justify-content: center;
+  background-color: white;
   border: 1px solid;
   align-items: center;
 }
@@ -85,6 +86,7 @@ body {
   position: fixed;
   top: calc(20vh + 30px);
   left: 0;
+  z-index: -10;
 }
 
 .row-number {
@@ -106,6 +108,7 @@ body {
   top: 20vh;
   left: 30px;
   display: flex;
+  z-index: -10;
 }
 
 .column-tag {
