@@ -52,15 +52,27 @@ for (let i = 1; i <= 100; i++) {
     let cellDiv = document.createElement("div");
 
     cellDiv.addEventListener("input", function (e) {
-      // jis cell pr type kra uske attribute se maine uska cell address fetch kra
       let currCellAddress = e.currentTarget.getAttribute("data-address");
 
-      //kuki sare cell objects dataObj me store ho rakhe h using their cell address as key
-      //maine jis cell pr click krke type kra uska hi address fetch and uska hi object chahiye
-      //to wo address as key use krke dataObj se fetch krlia req cellObj ko
       let currCellObj = dataObj[currCellAddress];
 
       currCellObj.value = e.currentTarget.innerText;
+      currCellObj.formula = undefined;
+
+      //1- Loop on upstream
+      //2- for each cell go to its downstream and remove ourself
+      //3- apni upstream ko empty array krdo
+
+      let currUpstream = currCellObj.upstream;
+
+      for (let k = 0; k < currUpstream.length; k++) {
+        // removeFromDownstream(parent,child)
+
+        removeFromDownstream(currUpstream[k], currCellAddress);
+      }
+
+      currCellObj.upstream = [];
+
       console.log(currCellObj);
     });
 
@@ -85,4 +97,31 @@ for (let i = 1; i <= 100; i++) {
   }
 
   cellSection.append(rowDiv);
+}
+
+// C1 = Formula(2*A1)
+// A1 = parent
+// C1 = child
+
+//is function kisi ki upstream se mtlb nhi hai
+//iska bs itna kaam h ki parent do and child do , aur mai parent ki downstream se child ko hta dunga
+//taki unke bichka connection khtm hojai
+//taki agr parent update ho to connection khtm hone ke baad child update na ho
+function removeFromDownstream(parentCell, childCell) {
+  //1- fetch parentCell's downstream
+
+  let parentDownstream = dataObj[parentCell].downstream;
+
+  //2- filter kro childCell ko parent ki downstream se
+
+  let filteredDownstream = []; //a1
+
+  for (let i = 0; i < parentDownstream.length; i++) { 
+    if (parentDownstream[i] != childCell) {
+      filteredDownstream.push(parentDownstream[i]);
+    }
+  }
+
+  //3- filtered upstream ko wapis save krwado dataObj me req cell me
+  dataObj[parentCell].downstream = filteredDownstream
 }
