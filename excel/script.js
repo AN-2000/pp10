@@ -6,6 +6,7 @@ let cellSection = document.querySelector(".cell-section");
 let columnTagsSection = document.querySelector(".column-tag-section");
 
 let lastCell;
+let dataObj = {};
 
 cellSection.addEventListener("scroll", function (e) {
   rowNumberSection.style.transform = `translateY(-${e.currentTarget.scrollTop}px)`;
@@ -31,34 +32,41 @@ for (let i = 0; i < 26; i++) {
   columnTagsSection.append(div);
 }
 
+//inside this nested for loop we are creating individual cells UI + cell obj
 for (let i = 1; i <= 100; i++) {
   let rowDiv = document.createElement("div");
   rowDiv.classList.add("row");
-  //i = 1 [A1,B1..........Z1]
-  //i = 2 []
-  //.
-  //.
-  //i = 100 [A100.........z100]
 
   for (let j = 0; j < 26; j++) {
-    //i = 100   j = 25  asciiCode = 65+25=90  alpha = z  cellAdd = Z100
-    // A to Z
     let asciiCode = 65 + j;
-
     let reqAlphabet = String.fromCharCode(asciiCode);
-
     let cellAddress = reqAlphabet + i;
+
+    dataObj[cellAddress] = {
+      value: undefined,
+      formula: undefined,
+      upstream: [],
+      downstream: [],
+    };
 
     let cellDiv = document.createElement("div");
 
-    // cellDiv.contentEditable = true
+    cellDiv.addEventListener("input", function (e) {
+      // jis cell pr type kra uske attribute se maine uska cell address fetch kra
+      let currCellAddress = e.currentTarget.getAttribute("data-address");
+
+      //kuki sare cell objects dataObj me store ho rakhe h using their cell address as key
+      //maine jis cell pr click krke type kra uska hi address fetch and uska hi object chahiye
+      //to wo address as key use krke dataObj se fetch krlia req cellObj ko
+      let currCellObj = dataObj[currCellAddress];
+
+      currCellObj.value = e.currentTarget.innerText;
+      console.log(currCellObj);
+    });
 
     cellDiv.setAttribute("contentEditable", true);
-
     cellDiv.classList.add("cell");
-
     cellDiv.setAttribute("data-address", cellAddress);
-
     cellDiv.addEventListener("click", function (e) {
       if (lastCell) {
         lastCell.classList.remove("cell-selected");
