@@ -73,6 +73,21 @@ for (let i = 1; i <= 100; i++) {
 
       currCellObj.upstream = [];
 
+
+
+      let currDownstream = currCellObj.downstream;
+
+
+      // C1(20) => [E1]  E1 (2*C1) [40]
+
+      for(let i = 0;i<currDownstream.length;i++){
+        updateCell(currDownstream[i])
+      }
+
+
+
+
+
       console.log(currCellObj);
     });
 
@@ -124,4 +139,40 @@ function removeFromDownstream(parentCell, childCell) {
 
   //3- filtered upstream ko wapis save krwado dataObj me req cell me
   dataObj[parentCell].downstream = filteredDownstream
+}
+
+
+function updateCell(cell){
+  let cellObj = dataObj[cell]
+  let upstream = cellObj.upstream // [(A1-20), B1-10]
+  let formula = cellObj.formula // A1 + B1
+
+  // upstream me jobhi cell hai unke objects me jaunga whase unki value lekr aunga 
+  // wo sari values mai ek object me key value pair form me store krunga where key being the cell address 
+
+
+  // {
+  //   A1:20,
+  //   B1:10
+  // }
+
+  let valObj = {}
+
+  for(let i = 0;i<upstream.length;i++){
+  
+      let cellValue =  dataObj[upstream[i]].value
+
+      valObj[upstream[i]] = cellValue
+  }
+
+//a1 + b1
+
+for(let key in valObj){
+  formula = formula.replace(key,valObj[key])
+}
+
+//20 + 10
+
+let newValue = eval(formula)
+
 }
