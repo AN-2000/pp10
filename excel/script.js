@@ -73,22 +73,17 @@ for (let i = 1; i <= 100; i++) {
 
       currCellObj.upstream = [];
 
-
-
       let currDownstream = currCellObj.downstream;
-
 
       // C1(20) => [E1]  E1 (2*C1) [40]
 
-      for(let i = 0;i<currDownstream.length;i++){
-        updateCell(currDownstream[i])
+      for (let i = 0; i < currDownstream.length; i++) {
+        updateCell(currDownstream[i]);
       }
 
+      dataObj[currCellAddress] = currCellObj;
 
-
-
-
-      console.log(currCellObj);
+      console.log(dataObj);
     });
 
     cellDiv.setAttribute("contentEditable", true);
@@ -114,6 +109,18 @@ for (let i = 1; i <= 100; i++) {
   cellSection.append(rowDiv);
 }
 
+dataObj["A1"].value = 20;
+dataObj["A1"].downstream = ["B1"];
+dataObj["B1"].formula = "2 * A1";
+dataObj["B1"].upstream = ["A1"];
+dataObj["B1"].value = 40;
+
+let a1cell = document.querySelector("[data-address='A1']")
+let b1cell = document.querySelector("[data-address='B1']")
+
+a1cell.innerText = 20
+b1cell.innerText = 40
+
 // C1 = Formula(2*A1)
 // A1 = parent
 // C1 = child
@@ -131,48 +138,52 @@ function removeFromDownstream(parentCell, childCell) {
 
   let filteredDownstream = []; //a1
 
-  for (let i = 0; i < parentDownstream.length; i++) { 
+  for (let i = 0; i < parentDownstream.length; i++) {
     if (parentDownstream[i] != childCell) {
       filteredDownstream.push(parentDownstream[i]);
     }
   }
 
   //3- filtered upstream ko wapis save krwado dataObj me req cell me
-  dataObj[parentCell].downstream = filteredDownstream
+  dataObj[parentCell].downstream = filteredDownstream;
 }
 
+function updateCell(cell) {
+  let cellObj = dataObj[cell];
+  let upstream = cellObj.upstream; // [(A1-20), B1-10]
+  let formula = cellObj.formula; // A1 + B1
 
-function updateCell(cell){
-  let cellObj = dataObj[cell]
-  let upstream = cellObj.upstream // [(A1-20), B1-10]
-  let formula = cellObj.formula // A1 + B1
-
-  // upstream me jobhi cell hai unke objects me jaunga whase unki value lekr aunga 
-  // wo sari values mai ek object me key value pair form me store krunga where key being the cell address 
-
+  // upstream me jobhi cell hai unke objects me jaunga whase unki value lekr aunga
+  // wo sari values mai ek object me key value pair form me store krunga where key being the cell address
 
   // {
   //   A1:20,
   //   B1:10
   // }
 
-  let valObj = {}
+  let valObj = {};
 
-  for(let i = 0;i<upstream.length;i++){
-  
-      let cellValue =  dataObj[upstream[i]].value
+  for (let i = 0; i < upstream.length; i++) {
+    let cellValue = dataObj[upstream[i]].value;
 
-      valObj[upstream[i]] = cellValue
+    valObj[upstream[i]] = cellValue;
   }
 
-//a1 + b1
+  //a1 + b1
 
-for(let key in valObj){
-  formula = formula.replace(key,valObj[key])
-}
+  for (let key in valObj) {
+    formula = formula.replace(key, valObj[key]);
+  }
 
-//20 + 10
+  //20 + 10
 
-let newValue = eval(formula)
+  let newValue = eval(formula);
 
+  dataObj[cell].value = newValue;
+
+  let downstream = cellObj.downstream;
+
+  for (let i = 0; i < downstream.length; i++) {
+    updateCell(downstream[i]);
+  }
 }
