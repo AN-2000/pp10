@@ -34,6 +34,7 @@ body {
 }
 
 .menu-options-section {
+  display: flex;
   height: 8%;
   background-color: #2ecc71;
 }
@@ -133,8 +134,7 @@ body {
   overflow: auto;
 }
 
-
-.cell{
+.cell {
   width: 80px;
   height: 30px;
   border: 1px solid;
@@ -142,10 +142,28 @@ body {
   outline: none;
 }
 
-.cell-selected{
+.cell-selected {
   border: 2px solid rgb(60, 60, 218);
 }
 
-.row{
+.row {
   display: flex;
+}
+
+.menu-options-section div {
+  border: 1px solid;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.bold-italics-underline,
+.align-cell-content,
+.cell-color-options {
+  width: 23%;
+}
+
+.font-type-size {
+  width: 31%;
 }

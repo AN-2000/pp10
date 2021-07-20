@@ -68,7 +68,7 @@ formulaInput.addEventListener("keydown", function (e) {
 
     let newValue = eval(typedFormula);
 
-    lastCell.innerText = newValue
+    lastCell.innerText = newValue;
 
     cellObj.value = newValue;
 
@@ -79,6 +79,8 @@ formulaInput.addEventListener("keydown", function (e) {
     }
 
     dataObj[selectedCellAdd] = cellObj;
+
+    formulaInput.value = "";
   }
 });
 
@@ -121,6 +123,9 @@ for (let i = 1; i <= 100; i++) {
       formula: undefined,
       upstream: [],
       downstream: [],
+      align: "left",
+      color: "black",
+      bgColor: "white",
     };
 
     let cellDiv = document.createElement("div");
