@@ -32,7 +32,53 @@ formulaInput.addEventListener("keydown", function (e) {
       removeFromDownstream(upstream[k], selectedCellAdd);
     }
 
-    currCellObj.upstream = [];
+    cellObj.upstream = [];
+
+    let formulaArr = typedFormula.split(" ");
+    let cellsInFormula = [];
+
+    for (let i = 0; i < formulaArr.length; i++) {
+      if (
+        formulaArr[i] != "+" &&
+        formulaArr[i] != "-" &&
+        formulaArr[i] != "*" &&
+        formulaArr[i] != "/" &&
+        isNaN(formulaArr[i])
+      ) {
+        cellsInFormula.push(formulaArr[i]);
+      }
+    }
+
+    for (let i = 0; i < cellsInFormula.length; i++) {
+      addToDownstream(cellsInFormula[i], selectedCellAdd);
+    }
+    cellObj.upstream = cellsInFormula; //[A1, B1]
+
+    let valObj = {};
+
+    for (let i = 0; i < cellsInFormula.length; i++) {
+      let cellValue = dataObj[cellsInFormula[i]].value;
+
+      valObj[cellsInFormula[i]] = cellValue;
+    }
+
+    for (let key in valObj) {
+      typedFormula = typedFormula.replace(key, valObj[key]);
+    }
+
+    let newValue = eval(typedFormula);
+
+    lastCell.innerText = newValue
+
+    cellObj.value = newValue;
+
+    let downstream = cellObj.downstream;
+
+    for (let i = 0; i < downstream.length; i++) {
+      updateCell(downstream[i]);
+    }
+
+    dataObj[selectedCellAdd] = cellObj;
   }
 });
 
@@ -137,18 +183,6 @@ for (let i = 1; i <= 100; i++) {
   cellSection.append(rowDiv);
 }
 
-dataObj["A1"].value = 20;
-dataObj["A1"].downstream = ["B1"];
-dataObj["B1"].formula = "2 * A1";
-dataObj["B1"].upstream = ["A1"];
-dataObj["B1"].value = 40;
-
-let a1cell = document.querySelector("[data-address='A1']");
-let b1cell = document.querySelector("[data-address='B1']");
-
-a1cell.innerText = 20;
-b1cell.innerText = 40;
-
 // C1 = Formula(2*A1)
 // A1 = parent
 // C1 = child
@@ -217,4 +251,10 @@ function updateCell(cell) {
   for (let i = 0; i < downstream.length; i++) {
     updateCell(downstream[i]);
   }
+}
+
+function addToDownstream(parent, child) {
+  // child ko parent ki downstream me add krna hai
+
+  dataObj[parent].downstream.push(child);
 }
