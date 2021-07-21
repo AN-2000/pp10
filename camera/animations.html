@@ -12,36 +12,102 @@
 
       body {
         margin: 0;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
       }
 
       div {
         height: 10rem;
         width: 10rem;
-        background-color: yellow;
-        animation: shrinkDownNUp;
-        animation-duration: 2s;
-        animation-fill-mode: forwards;
-        animation-delay: 1s;
+        position: fixed;
       }
 
-      @keyframes shrinkDownNUp {
+      .top-left {
+        top: 0;
+        left: 0;
+        animation: moveRight;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+      }
+
+      .bottom-left {
+        bottom: 0;
+        left: 0;
+        animation: moveUp;
+        animation-duration: 2s;
+        animation-delay: 6s;
+        animation-fill-mode: forwards;
+      }
+
+      .bottom-right {
+        bottom: 0;
+        right: 0;
+        animation: moveLeft;
+        animation-duration: 2s;
+        animation-delay: 4s;
+        animation-fill-mode: forwards;
+      }
+
+      .top-right {
+        top: 0;
+        right: 0;
+        animation: moveDown;
+        animation-duration: 2s;
+        animation-delay: 2s;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes moveRight {
         0% {
-          transform: scale(1);
-          border-radius: 0;
+          top: 0vh;
+          left: 0vw;
         }
 
         100% {
-          transform: scale(2);
-          border-radius: 50%;
+          top: 0vh;
+          left: calc(100vw - 10rem);
+        }
+      }
+
+      @keyframes moveLeft {
+        0% {
+          bottom: 0vh;
+          right: 0vw;
+        }
+
+        100% {
+          bottom: 0vh;
+          right: calc(100vw - 10rem);
+        }
+      }
+
+      @keyframes moveDown {
+        0% {
+          top: 0vh;
+          right: 0vw;
+        }
+
+        100% {
+          top: calc(100vh - 10rem);
+          right: 0vw;
+        }
+      }
+
+      @keyframes moveUp {
+        0% {
+          bottom: 0vh;
+          left: 0vw;
+        }
+
+        100% {
+          bottom: calc(100vh - 10rem);
+          left: 0vw;
         }
       }
     </style>
   </head>
   <body>
-    <div></div>
+    <div class="top-left" style="background-color: navy"></div>
+    <div class="top-right" style="background-color: red"></div>
+    <div class="bottom-left" style="background-color: green"></div>
+    <div class="bottom-right" style="background-color: yellow"></div>
   </body>
 </html>
