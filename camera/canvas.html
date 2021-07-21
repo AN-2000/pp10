@@ -25,19 +25,31 @@
     <canvas></canvas>
     <script>
       let canvas = document.querySelector("canvas");
-
+      let isDrawing = false;
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
 
       let tool = canvas.getContext("2d");
 
-      tool.moveTo(0,0)
+      window.addEventListener("mousedown", function (e) {
+          console.log(e);
+        tool.moveTo(e.clientX, e.clientY);
+        isDrawing = true;
 
+        console.log("down");
+      });
 
-      tool.lineTo(400,400)
-      tool.stroke()
+      window.addEventListener("mouseup", function (e) {
+        isDrawing = false;
+        console.log("up");
+      });
 
-
+      window.addEventListener("mousemove", function (e) {
+        if (isDrawing) {
+          tool.lineTo(e.clientX, e.clientY);
+          tool.stroke();
+        }
+      });
     </script>
   </body>
 </html>
