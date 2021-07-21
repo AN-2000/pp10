@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <video controls loop autoplay></video>
+
+    <script>
+      let videoPlayer = document.querySelector("video");
+
+      let promiseToUseCamera = navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: true,
+      });
+
+      promiseToUseCamera
+        .then(function (mediaStream) {
+
+          videoPlayer.srcObject = mediaStream;
+
+          //   console.log("User has given access to use the camera");
+          //   console.log(mediaStream);
+        })
+        .catch(function () {
+          console.log("user has denied the access of camera");
+        });
+    </script>
+  </body>
+</html>
