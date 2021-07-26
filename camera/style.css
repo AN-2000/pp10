@@ -24,15 +24,31 @@ button {
   height: 5rem;
   width: 5rem;
   border-radius: 50%;
-  border: none;
+  background: black;
+  border: 8px solid white;
+}
+
+button span {
+  height: 60%;
+  width: 70%;
+  display: inline-block;
+  border-radius: 50%;
 }
 
 #record {
   top: 40vh;
 }
 
+#record span {
+  background-color: red;
+}
+
 #capture {
   top: 60vh;
+}
+
+#capture span {
+  background-color: white;
 }
 
 .filters {
@@ -52,4 +68,46 @@ button {
   background-blend-mode: color-burn;
   background-size: cover;
   background-image: url(https://images-na.ssl-images-amazon.com/images/I/91wcUPNHFEL.png);
+}
+
+.zoom {
+  height: 8rem;
+  width: 4rem;
+  border: 1px solid;
+  position: fixed;
+  top: 20vh;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.zoom div {
+  background: #332e2e;
+  flex-grow: 1;
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.capture-animation{
+  animation: shrinkDownUp;
+  animation-duration: 1s;
+}
+
+.record-animation{
+  animation: shrinkDownUp;
+  animation-duration: 0.7s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shrinkDownUp {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.7);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

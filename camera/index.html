@@ -5,20 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="video-container">
       <video autoplay></video>
     </div>
 
-    <button id="record">Record</button>
-    <button id="capture">Capture</button>
+    <button id="record"><span></span></button>
+    <button id="capture"><span></span></button>
 
     <div class="filters">
-      <div class="filter" style="background-color: #fab0a055;"></div>
-      <div class="filter" style="background-color: #a29bfe4b;"></div>
+      <div class="filter" style="background-color: #fab0a055"></div>
+      <div class="filter" style="background-color: #a29bfe4b"></div>
       <div class="filter"></div>
+    </div>
+
+    <div class="zoom">
+      <div class="in">+</div>
+      <div class="out">-</div>
     </div>
 
     <script src="script.js"></script>
