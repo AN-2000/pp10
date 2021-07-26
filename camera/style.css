@@ -26,6 +26,7 @@ button {
   border-radius: 50%;
   background: black;
   border: 8px solid white;
+  z-index: 3;
 }
 
 button span {
@@ -52,6 +53,8 @@ button span {
 }
 
 .filters {
+  z-index: 3;
+
   height: 12rem;
   width: 5rem;
   border: 1px solid;
@@ -71,6 +74,8 @@ button span {
 }
 
 .zoom {
+  z-index: 3;
+
   height: 8rem;
   width: 4rem;
   border: 1px solid;
@@ -82,6 +87,7 @@ button span {
 }
 
 .zoom div {
+  z-index: 3;
   background: #332e2e;
   flex-grow: 1;
   color: white;
@@ -89,15 +95,23 @@ button span {
   text-align: center;
 }
 
-.capture-animation{
+.capture-animation {
   animation: shrinkDownUp;
   animation-duration: 1s;
 }
 
-.record-animation{
+.record-animation {
   animation: shrinkDownUp;
   animation-duration: 0.7s;
   animation-iteration-count: infinite;
+}
+
+.filter-div {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 1;
 }
 
 @keyframes shrinkDownUp {

@@ -12,15 +12,13 @@
 
       body {
         margin: 0;
-        /* overflow: hidden; */
+        overflow: hidden;
       }
     </style>
   </head>
   <body>
     <canvas></canvas>
-    <img
-      src="https://thumbs-prod.si-cdn.com/P4Smi9MthEBXH7pdW8Y-bvwR6ts=/1072x720/filters:no_upscale()/https://public-media.si-cdn.com/filer/04/8e/048ed839-a581-48af-a0ae-fac6fec00948/gettyimages-168346757_web.jpg"
-    />
+   
     <script>
       let canvas = document.querySelector("canvas");
       let img = document.querySelector("img");
@@ -29,10 +27,11 @@
 
       let tool = canvas.getContext("2d");
 
-      img.addEventListener("load", function () {
-        tool.drawImage(img, 0, 0);
-      });
 
+      tool.fillStyle = "red"
+
+      tool.fillRect(0,0,500,200)
+    
 
     </script>
   </body>

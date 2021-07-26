@@ -5,6 +5,24 @@ let body = document.querySelector("body");
 let mediaRecorder;
 let chunks = [];
 let isRecording = false;
+let filter = "";
+
+let allFilters = document.querySelectorAll(".filter");
+
+for (let i = 0; i < allFilters.length; i++) {
+  allFilters[i].addEventListener("click", function (e) {
+    let previousFilter = document.querySelector(".filter-div");
+
+    if (previousFilter) previousFilter.remove();
+
+    let color = e.currentTarget.style.backgroundColor;
+    filter = color;
+    let div = document.createElement("div");
+    div.classList.add("filter-div");
+    div.style.backgroundColor = color;
+    body.append(div);
+  });
+}
 
 captureBtn.addEventListener("click", function () {
   let innerSpan = captureBtn.querySelector("span");
@@ -22,6 +40,11 @@ captureBtn.addEventListener("click", function () {
 
   tool.drawImage(videoPlayer, 0, 0);
 
+  if (filter != "") {
+    tool.fillStyle = filter;
+    tool.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
   let url = canvas.toDataURL();
   canvas.remove();
 
@@ -34,6 +57,12 @@ captureBtn.addEventListener("click", function () {
 
 recordBtn.addEventListener("click", function () {
   let innerSpan = recordBtn.querySelector("span");
+
+  let previousFilter = document.querySelector(".filter-div");
+
+  if (previousFilter) previousFilter.remove();
+
+  filter = "";
 
   if (isRecording) {
     //recording ko stop krna h
