@@ -1,3 +1,55 @@
-.video-container{
-    overflow: hidden;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.video-container {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+}
+
+video {
+  height: 100%;
+  width: 100%;
+}
+
+button {
+  position: fixed;
+  right: 2rem;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  border: none;
+}
+
+#record {
+  top: 40vh;
+}
+
+#capture {
+  top: 60vh;
+}
+
+.filters {
+  height: 12rem;
+  width: 5rem;
+  border: 1px solid;
+  position: fixed;
+  top: 20vh;
+  left: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter {
+  border: 1px solid;
+  flex-grow: 1;
+  background-blend-mode: color-burn;
+  background-size: cover;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/I/91wcUPNHFEL.png);
 }
