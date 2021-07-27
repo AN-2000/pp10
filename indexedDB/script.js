@@ -1,20 +1,54 @@
-//database version signifies how many major changes my database has been through
-let req = indexedDB.open("Notes", 1);
+let opnBtn = document.querySelector("#open");
 
-req.addEventListener("success", function () {
-  console.log(1);
-  let db = req.result;
-  //   console.log(db);
+let addBtn = document.querySelector("#add");
+
+let input = document.querySelector("input");
+
+let db;
+
+let tempData = [
+  { cId: 2423534534, note: "this is note 1" },
+  { cId: 2426634534, note: "this is note2" },
+  { cId: 2113534534, note: "this is note 3" },
+];
+
+addBtn.addEventListener("click", function () {
+  if (!db) {
+    alert("database has not been opened yet");
+    return;
+  }
+
+  let value = input.value;
+  input.value = "";
+
+  let tx = db.transaction("csNotes", "readwrite");
+
+  let csNotesObjectStore = tx.objectStore("csNotes");
+
+  let data = {
+    note: value,
+    cId: Date.now(),
+  };
+
+  csNotesObjectStore.add(data);
 });
 
-//kuch bhi creation ya fir update ka kaam ho to ye wala apka event chlta h
-req.addEventListener("upgradeneeded", function () {
-  console.log(2);
-  let db = req.result;
+opnBtn.addEventListener("click", function () {
+  let req = indexedDB.open("Notes", 1);
 
-  db.createObjectStore("csNotes", { keyPath: "cId" });
-});
+  req.addEventListener("success", function () {
+    db = req.result;
+    console.log(db);
+    alert("successfully opened");
+  });
 
-req.addEventListener("error", function () {
-  console.log(3);
+  req.addEventListener("upgradeneeded", function () {
+    db = req.result;
+
+    db.createObjectStore("csNotes", { keyPath: "cId" });
+  });
+
+  req.addEventListener("error", function () {
+    alert("error in opening the db");
+  });
 });
