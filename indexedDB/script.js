@@ -11,7 +11,8 @@ req.addEventListener("success", function () {
 req.addEventListener("upgradeneeded", function () {
   console.log(2);
   let db = req.result;
-  console.log(db);
+
+  db.createObjectStore("csNotes", { keyPath: "cId" });
 });
 
 req.addEventListener("error", function () {
