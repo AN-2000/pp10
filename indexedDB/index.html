@@ -5,6 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      table,
+      tr,
+      th,
+      td,
+      tbody,
+      thead {
+        border: 1px solid;
+        border-collapse: collapse;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      th,td{
+          height: 3rem;
+          width: 8rem;
+          text-align: center;
+      }
+
+      th{
+        background: #898989;
+        border: 1px solid #898989;
+        color: white;
+      }
+    </style>
   </head>
   <body>
     <button id="open">Click me to open the database</button>
@@ -17,11 +41,11 @@
 
     <hr />
 
-    <button>view Notes</button>
+    <button id="view">view Notes</button>
 
-  
-
-    <table></table>
+    <table>
+      
+    </table>
 
     <script src="script.js"></script>
   </body>

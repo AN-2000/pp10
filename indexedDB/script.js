@@ -4,6 +4,10 @@ let addBtn = document.querySelector("#add");
 
 let input = document.querySelector("input");
 
+let viewBtn = document.querySelector("#view");
+
+let table = document.querySelector("table");
+
 let db;
 
 let tempData = [
@@ -11,6 +15,46 @@ let tempData = [
   { cId: 2426634534, note: "this is note2" },
   { cId: 2113534534, note: "this is note 3" },
 ];
+
+viewBtn.addEventListener("click", function () {
+  let tx = db.transaction("csNotes", "readonly");
+
+  let csNotesObjectStore = tx.objectStore("csNotes");
+
+  let req = csNotesObjectStore.openCursor();
+
+  table.innerHTML = `<thead>
+    <tr>
+      <th>S. No.</th>
+      <th>Note</th>
+      <th> Delete </th>
+    </tr>
+  </thead>
+  <tbody>
+   
+  </tbody>`;
+
+  let tbody = table.querySelector("tbody");
+
+  let serialNumber = 1;
+
+  req.addEventListener("success", function (e) {
+    let cursor = req.result;
+
+    if (cursor) {
+      let currObj = cursor.value;
+      let tr = document.createElement("tr");
+      tr.innerHTML = `
+                <td> ${serialNumber} </td>
+                <td> ${currObj.note} </td>
+                <td> <button> Delete </button> </td>
+              `;
+      tbody.append(tr);
+      serialNumber++;
+      cursor.continue();
+    }
+  });
+});
 
 addBtn.addEventListener("click", function () {
   if (!db) {
