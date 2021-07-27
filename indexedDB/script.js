@@ -17,6 +17,17 @@ let tempData = [
 ];
 
 viewBtn.addEventListener("click", function () {
+    
+  let isOpen = viewBtn.getAttribute("data-open");
+
+  if (isOpen == "true") {
+    viewBtn.setAttribute("data-open", "false");
+    table.innerHTML = "";
+    return;
+  }
+
+  viewBtn.setAttribute("data-open", "true");
+
   let tx = db.transaction("csNotes", "readonly");
 
   let csNotesObjectStore = tx.objectStore("csNotes");
@@ -47,8 +58,17 @@ viewBtn.addEventListener("click", function () {
       tr.innerHTML = `
                 <td> ${serialNumber} </td>
                 <td> ${currObj.note} </td>
-                <td> <button> Delete </button> </td>
+                <td> <button data-cId="${currObj.cId}"> Delete </button> </td>
               `;
+
+      let button = tr.querySelector("button");
+
+      button.addEventListener("click", function (e) {
+        let cId = Number(e.currentTarget.getAttribute("data-cId"));
+        deleteNote(cId);
+        e.currentTarget.parentElement.parentElement.remove();
+      });
+
       tbody.append(tr);
       serialNumber++;
       cursor.continue();
@@ -96,3 +116,11 @@ opnBtn.addEventListener("click", function () {
     alert("error in opening the db");
   });
 });
+
+function deleteNote(cId) {
+  let tx = db.transaction("csNotes", "readwrite");
+
+  let csNotesObjectStore = tx.objectStore("csNotes");
+
+  csNotesObjectStore.delete(cId);
+}
