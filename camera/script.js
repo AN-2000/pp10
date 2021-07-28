@@ -6,6 +6,24 @@ let mediaRecorder;
 let chunks = [];
 let isRecording = false;
 let filter = "";
+let currZoom = 1; // min = 1 and max = 3
+
+let zoomIn = document.querySelector(".in");
+let zoomOut = document.querySelector(".out");
+
+zoomIn.addEventListener("click", function () {
+  currZoom = currZoom + 0.1;
+  if (currZoom > 3) currZoom = 3;
+  console.log(currZoom);
+  videoPlayer.style.transform = `scale(${currZoom})`;
+});
+
+zoomOut.addEventListener("click", function () {
+  currZoom = currZoom - 0.1;
+  if (currZoom < 1) currZoom = 1;
+  console.log(currZoom);
+  videoPlayer.style.transform = `scale(${currZoom})`;
+});
 
 let allFilters = document.querySelectorAll(".filter");
 
@@ -37,6 +55,13 @@ captureBtn.addEventListener("click", function () {
   canvas.height = videoPlayer.videoHeight;
 
   let tool = canvas.getContext("2d");
+
+  //top left to center
+  tool.translate(canvas.width / 2, canvas.height / 2);
+  //zoom basically stretch kra canvas ko
+  tool.scale(currZoom, currZoom);
+  //wapi top left pr leaye origin
+  tool.translate(-canvas.width / 2, -canvas.height / 2);
 
   tool.drawImage(videoPlayer, 0, 0);
 
@@ -72,6 +97,9 @@ recordBtn.addEventListener("click", function () {
   } else {
     //recording shuru krni hai
     mediaRecorder.start();
+    currZoom = 1;
+    videoPlayer.style.transform = `scale(${currZoom})`;
+
     isRecording = true;
     innerSpan.classList.add("record-animation");
   }
