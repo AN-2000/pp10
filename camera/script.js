@@ -10,6 +10,11 @@ let currZoom = 1; // min = 1 and max = 3
 
 let zoomIn = document.querySelector(".in");
 let zoomOut = document.querySelector(".out");
+let galleryBtn = document.querySelector("#gallery");
+
+galleryBtn.addEventListener("click", function () {
+  location.assign("gallery.html");
+});
 
 zoomIn.addEventListener("click", function () {
   currZoom = currZoom + 0.1;
@@ -73,11 +78,12 @@ captureBtn.addEventListener("click", function () {
   let url = canvas.toDataURL();
   canvas.remove();
 
-  let a = document.createElement("a");
-  a.href = url;
-  a.download = "image.png";
-  a.click();
-  a.remove();
+  saveMedia(url);
+  // let a = document.createElement("a");
+  // a.href = url;
+  // a.download = "image.png";
+  // a.click();
+  // a.remove();
 });
 
 recordBtn.addEventListener("click", function () {
@@ -125,13 +131,15 @@ promiseToUseCamera
       let blob = new Blob(chunks, { type: "video/mp4" });
       chunks = [];
 
-      let link = URL.createObjectURL(blob); //kisi tarike se blob ki link bnadi h
+      saveMedia(blob);
 
-      let a = document.createElement("a");
-      a.href = link;
-      a.download = "video.mp4";
-      a.click();
-      a.remove();
+      // let link = URL.createObjectURL(blob); //kisi tarike se blob ki link bnadi h
+
+      // let a = document.createElement("a");
+      // a.href = link;
+      // a.download = "video.mp4";
+      // a.click();
+      // a.remove();
     });
   })
   .catch(function () {
