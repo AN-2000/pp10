@@ -26,4 +26,8 @@ function fn3(x) {
   return 3 * x;
 }
 
+fn3()
+
 let fa3 = x => 3 * x;
+
+fa3()
