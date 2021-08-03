@@ -10,6 +10,12 @@ import ReactDOM from "react-dom"; // render logic
 import MyComp from "./MyComp";
 
 ReactDOM.render(
-  <MyComp />, // ek component
+  <div>
+    <MyComp/>
+    <MyComp/>
+    <MyComp/>
+    <MyComp/>
+   
+  </div>, // ek component
   document.querySelector("#root") // aur ek jagah jha us component ko dikhana hai
 );
