@@ -1,6 +1,17 @@
-input{
-    background-color: #3498db;
-    border: none;
-    color: white;
-    outline: none;
+input {
+  border: none;
+  color: white;
+  outline: none;
+}
+
+
+button{
+  height: 2rem;
+  width: 4rem;
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: red;
+  color: white;
+  border: none;
+  outline: none;
 }

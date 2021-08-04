@@ -1,5 +1,6 @@
 import React from "react";
-import "./App.css"
+import "./App.css";
+import List from "./List";
 
 class App extends React.Component {
   state = {
@@ -11,12 +12,11 @@ class App extends React.Component {
     return (
       <div>
         <input
-        className="input-box"
+          className="input-box"
           type="text"
           onChange={(e) => {
             this.setState({ currInput: e.currentTarget.value });
           }}
-
           onKeyDown={(e) => {
             if (e.key == "Enter") {
               this.setState({
@@ -25,15 +25,13 @@ class App extends React.Component {
               });
             }
           }}
-
           value={this.state.currInput}
         />
+        <List tasks = {this.state.tasks}/>  
 
-        <ul>
-          {this.state.tasks.map((el) => {
-            return <li>{el}</li>;
-          })}
-        </ul>
+
+    
+
       </div>
     );
   };
