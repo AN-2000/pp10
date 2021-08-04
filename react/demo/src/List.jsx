@@ -4,20 +4,14 @@ let List = (props) => {
       {props.tasks.map((el) => {
         return (
           <li>
-            {el}{" "}
-            {/* <button
+            {el}
+            <button
               onClick={() => {
-                let currTaskArr = this.state.tasks;
-
-                let filteredArr = currTaskArr.filter((element) => {
-                  return element != el;
-                });
-
-                this.setState({ tasks: filteredArr });
+                props.deleteTask(el)
               }}
             >
               Delete
-            </button> */}
+            </button>
           </li>
         );
       })}
