@@ -7,7 +7,7 @@ let Input = (props) => {
         props.handleCurrInput(e.currentTarget.value);
       }}
       onKeyDown={(e) => {
-        if (e.key == "Enter") {
+        if (e.key === "Enter") {
           props.handleTasks();
         }
       }}

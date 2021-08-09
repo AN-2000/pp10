@@ -9,6 +9,8 @@ class App extends React.Component {
     currInput: "",
   };
 
+  
+
   handleCurrInput = (value) => {
     this.setState({ currInput: value });
   };
@@ -24,7 +26,7 @@ class App extends React.Component {
     let currTaskArr = this.state.tasks;
 
     let filteredArr = currTaskArr.filter((element) => {
-      return element != singleTask;
+      return element !== singleTask;
     });
 
     this.setState({ tasks: filteredArr });
@@ -38,6 +40,8 @@ class App extends React.Component {
           handleTasks={this.handleTasks}
           currInput={this.state.currInput}
         />
+
+        
         <List tasks={this.state.tasks} deleteTask={this.deleteTask} />
       </div>
     );
