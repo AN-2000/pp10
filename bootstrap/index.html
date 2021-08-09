@@ -10,30 +10,116 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <style>
-        .row div{
-            height: 5rem;
-            border: 2px solid red;
-            background-color: yellow;
-            font-size: 3rem;
-        }
-    </style>
+
     <title>Document</title>
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">MoviesRentals</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Customers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Rentals</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
+    <div class="row">
+      <div class="col-3">
+        <ul class="list-group m-4">
+          <li class="list-group-item">An item</li>
+          <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A fourth item</li>
+        </ul>
+      </div>
 
-    <div class="row">  
+      <div class="col-9 p-4">
+        <p class="mt-4">Showing 9 movies from the database</p>
+        <button type="button" class="btn btn-primary mt-2">New</button>
 
+        <div class="row">
+          <div class="col-4">
+            <div class="input-group flex-nowrap">
+              <input
+                type="text"
+                class="form-control mt-4"
+                placeholder="Search..."
+              />
+            </div>
+          </div>
+        </div>
 
-       
-        <div class="col-3">1</div>  
-        <div class="col-2">2</div>
-        <div class="col-7">3</div>
+        <div class="row">
+          <div class="col-10">
+            <table class="table mt-4">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td colspan="2">Larry the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-
+        <nav>
+          <ul class="pagination mt-4">
+            <li class="page-item">
+              <a class="page-link" href="#">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
-
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
