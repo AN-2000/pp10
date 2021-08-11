@@ -1,21 +1,40 @@
 import React from "react";
+import Filter from "./Filter";
+import Navbar from "./Navbar";
 
 class App extends React.Component {
-  componentDidMount() {
-    //i will get data here
+  state = {
+    movies: [],
+    genre: [],
+  };
 
+  componentDidMount() {
     let f = async () => {
-      let result = await fetch("http://localhost:4000/movies");
-      console.log(result);
-      let json = await result.json();
-      console.log(json);
+      let responseGenre = await fetch("/genre");
+      let responseMovies = await fetch("/movies");
+      let moviesJson = await responseMovies.json();
+      let genreJson = await responseGenre.json();
+
+      this.setState({
+        movies: moviesJson,
+        genre: genreJson,
+      });
     };
 
     f();
   }
 
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <Navbar />
+        
+
+        <div className="row">
+          <Filter genreData = {this.state.genre}/>
+        </div>
+      </div>
+    );
   }
 }
 
