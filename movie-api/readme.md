@@ -1,7 +1,5 @@
 # Steps 
-- new folder with name using small letters and no spaces 
-- npm init -y (creates a package.json file)
-- npm i express (installs the express framework)
+- Download the api and store the code in a folder with small letter and no spaces, open the folder in vscode and in terminal write npm install.
 
 
 
