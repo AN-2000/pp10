@@ -1,10 +1,10 @@
 let express = require("express");
-
+let cors = require("cors")
 let data = require("./data.json");
 
 //ek naya server bnade but ye sirf create krti use chalu nhi krti
 let server = express();
-
+server.use(cors())
 server.get("/movies", function (req, res) {
   res.json(data);
 });
