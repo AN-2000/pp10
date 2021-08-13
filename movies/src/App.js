@@ -67,7 +67,7 @@ class App extends React.Component {
             genreData={this.state.genre}
           />
 
-          <div class="col-9 p-4">
+          <div className="col-9 p-4">
             <Search />
             <Table
               deleteMovie={this.deleteMovie}
