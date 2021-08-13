@@ -1,7 +1,7 @@
-let Search = () => {
+let Search = (props) => {
   return (
     <>
-      <p class="mt-4">Showing 9 movies from the database</p>
+      <p class="mt-4">Showing {props.total} movies from the database</p>
       <button type="button" class="btn btn-primary mt-2">
         New
       </button>
@@ -13,6 +13,10 @@ let Search = () => {
               type="text"
               class="form-control mt-4"
               placeholder="Search..."
+              value={props.search}
+              onChange={(e) => {
+                props.updateSearch(e.currentTarget.value);
+              }}
             />
           </div>
         </div>
@@ -21,4 +25,4 @@ let Search = () => {
   );
 };
 
-export default Search
+export default Search;

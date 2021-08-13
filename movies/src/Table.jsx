@@ -4,7 +4,7 @@ import "./Table.css";
 
 class Table extends React.Component {
   state = {
-    currPage: 2,
+    currPage: 1,
   };
 
   selectPage = (value) => {
@@ -17,15 +17,25 @@ class Table extends React.Component {
 
     let filteredMoviesArr = allMovies.filter((el) => {
       if (currFilter === "All Genre") {
-        return el;
+        return true;
       } else if (el.genre.name === currFilter) {
-        return el;
+        return true;
       }
+    });
+
+    filteredMoviesArr = filteredMoviesArr.filter((el) => {
+      let movieTitle = el.title;
+      movieTitle = movieTitle.toLowerCase();
+      let s = this.props.search.toLowerCase();
+      return movieTitle.includes(s);
     });
 
     let numberOfPages = Math.ceil(filteredMoviesArr.length / 4);
 
-    let arrToBeUsedInTable = filteredMoviesArr.slice(0, 4);
+    let startIndex = (this.state.currPage - 1) * 4;
+    let endIndex = Math.min(filteredMoviesArr.length, this.state.currPage * 4);
+
+    let arrToBeUsedInTable = filteredMoviesArr.slice(startIndex, endIndex);
 
     return (
       <>
