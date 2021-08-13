@@ -3,13 +3,15 @@ import "./Table.css";
 
 let Table = (props) => {
 
+  
+
   let allMovies = props.moviesData;
   let currFilter = props.selectedFilter;
 
   let filteredMoviesArr = allMovies.filter((el) => {
-    if (currFilter == "All Genre") {
+    if (currFilter === "All Genre") {
       return el;
-    } else if (el.genre.name == currFilter) {
+    } else if (el.genre.name === currFilter) {
       return el;
     }
   });
@@ -53,7 +55,14 @@ let Table = (props) => {
                       )}
                     </td>
                     <td>
-                      <button className="table-delete-btn">Delete</button>
+                      <button
+                        onClick={() => {
+                          props.deleteMovie(el._id);
+                        }}
+                        className="table-delete-btn"
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 );

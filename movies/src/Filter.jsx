@@ -9,7 +9,7 @@ let Filter = (props) => {
             props.handleFilter("All Genre");
           }}
           class={`list-group-item ${
-            props.selectedFilter == "All Genre" ? "active" : ""
+            props.selectedFilter === "All Genre" ? "active" : ""
           }`}
         >
           All Genre
@@ -22,7 +22,7 @@ let Filter = (props) => {
               }}
               key={el._id}
               class={`list-group-item ${
-                props.selectedFilter == el.name ? "active" : ""
+                props.selectedFilter === el.name ? "active" : ""
               }`}
             >
               {el.name}

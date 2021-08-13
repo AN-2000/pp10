@@ -17,7 +17,7 @@ class App extends React.Component {
 
   toggleLike = (id) => {
     let index = this.state.movies.findIndex((el) => {
-      return el._id == id;
+      return el._id === id;
     });
 
     let currMoviesArr = this.state.movies.map((el) => el);
@@ -29,6 +29,14 @@ class App extends React.Component {
     }
 
     this.setState({ movies: currMoviesArr });
+  };
+
+  deleteMovie = (id) => {
+    let filteredArr = this.state.movies.filter((el) => {
+      return el._id !== id;
+    });
+
+    this.setState({ movies: filteredArr });
   };
 
   componentDidMount() {
@@ -62,6 +70,7 @@ class App extends React.Component {
           <div class="col-9 p-4">
             <Search />
             <Table
+              deleteMovie={this.deleteMovie}
               toggleLike={this.toggleLike}
               selectedFilter={this.state.selectedFilter}
               moviesData={this.state.movies}
