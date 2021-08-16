@@ -7,7 +7,7 @@ let App = () => {
 
   //This is case 2 for clean  up
   // in this case useEffect will only execute once and return a clean up function
-  //but we dont have other useEffect which will execute
+  // but we dont have other useEffect which will execute
   // and we know clean up works before execution of useEffect
   // so in this case the clean up execute when the component is getting unmounted from the screen
   useEffect(() => {
