@@ -4,11 +4,17 @@ import { auth } from "./firebase";
 export const authContext = createContext();
 
 let AuthProvider = (props) => {
+
+  console.log(props);
+
   let [user, setUser] = useState(null);
   let [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
+    
     let unsub = auth.onAuthStateChanged((user) => {
+
       if (user) {
         let { displayName, email, uid, photoURL } = user;
 
@@ -18,6 +24,8 @@ let AuthProvider = (props) => {
       }
 
       setLoading(false);
+
+
     });
 
     return () => {
@@ -27,7 +35,9 @@ let AuthProvider = (props) => {
 
   return (
     <authContext.Provider value={user}>
+
       {!loading && props.children}
+
     </authContext.Provider>
   );
 };
