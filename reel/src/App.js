@@ -4,32 +4,39 @@ import Login from "./components/login";
 import AuthProvider from "./AuthProvider";
 import { useEffect } from "react";
 import { firestore } from "./firebase";
-function App() {
-  useEffect(() => {
-    // add
-    // firestore.collection("users").add({ body: "this is val 2" });
+let App = () => {
+  // useEffect(() => {
+  // add
+  // firestore.collection("users").add({ body: "this is val 2" });
 
-    // get
+  // get all
 
-    async function f() {
+  // async function f() {
+  //   let querySnapshot = await firestore.collection("users").get();
+  //   for (let i = 0; i < querySnapshot.docs.length; i++) {
+  //     console.log(querySnapshot.docs[i].data());
+  //   }
 
-      let querySnapshot = await firestore.collection("users").get();
+  // }
+  // f();
 
-      for (let i = 0; i < querySnapshot.docs.length; i++) {
+  //get single
 
-        console.log(querySnapshot.docs[i].data());
-        
-      }
+  //this gives you the ref of that document
+  // let f = async () => {
+  //   let docRef = firestore.collection("users").doc("Yn0y1cjISraHa9xngpqr");
 
-    }
-    f();
-  }, []);
+  //   let documentSnapshot = await docRef.get();
+
+  //   console.log(documentSnapshot.exists);
+  // };
+
+  // f();
+  // }, []);
 
   return (
     <>
-      <h1>App</h1>
-
-      {/* <AuthProvider>
+      <AuthProvider>
         <Router>
           <Switch>
             <Route exact path="/login">
@@ -40,9 +47,9 @@ function App() {
             </Route>
           </Switch>
         </Router>
-      </AuthProvider> */}
+      </AuthProvider>
     </>
   );
-}
+};
 
 export default App;
