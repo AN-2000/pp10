@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import config from "./config.json";
+import "firebase/firestore"
 import "firebase/auth";
 
 // import "firebase/firestore";
@@ -11,6 +12,7 @@ let provider = new firebase.auth.GoogleAuthProvider();
 
 //object jiske ander login/logout/signup
 export const auth = firebase.auth();
+export const firestore = firebase.firestore()
 
 export const signInWithGoogle = () => {
   //ki muje popup ko use krke sign up krna with google
