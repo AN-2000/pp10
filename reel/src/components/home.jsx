@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { auth, storage } from "../firebase";
+import { useContext, useEffect, useState } from "react";
+import { auth, storage, firestore } from "../firebase";
 
 import { authContext } from "../AuthProvider";
 import { Redirect } from "react-router-dom";
@@ -9,12 +9,33 @@ import "./home.css";
 
 let Home = () => {
   let user = useContext(authContext);
+  let [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    firestore.collection("posts").onSnapshot((querySnapshot) => {
+      let docArr = querySnapshot.docs;
+
+      let arr = [];
+
+      for (let i = 0; i < docArr.length; i++) {
+        arr.push({
+          id: docArr[i].id,
+          ...docArr[i].data(),
+        });
+      }
+
+      setPosts(arr);
+    });
+  }, []);
+
   return (
     <>
       {user ? "" : <Redirect to="/login" />}
 
       <div className="video-container">
-        <VideoCard />
+        {posts.map((el) => {
+          return <VideoCard key={el.id} data={el} />;
+        })}
       </div>
 
       <button
@@ -56,9 +77,12 @@ let Home = () => {
           uploadTask.on("state_changed", null, null, () => {
             uploadTask.snapshot.ref.getDownloadURL().then((url) => {
               console.log(url);
+
+              firestore
+                .collection("posts")
+                .add({ name: user.displayName, url, likes: [], comments: [] });
             });
           });
-          
         }}
       />
     </>
