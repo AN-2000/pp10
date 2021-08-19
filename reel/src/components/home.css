@@ -8,10 +8,19 @@
   border-radius: 50%;
 }
 
-.video-container{
-    height: 100vh;
-    width: 100vw;
-    scroll-snap-type: y mandatory;
-    background-color: black;
-    overflow-y: scroll;
+.video-container {
+  height: 100vh;
+  width: 100vw;
+  scroll-snap-type: y mandatory;
+  background-color: black;
+  overflow-y: scroll;
+}
+
+input[type="file"] {
+  width: 6rem;
+  border: none;
+  outline: none;
+  position: fixed;
+  bottom: 12rem;
+  right: 20px;
 }
