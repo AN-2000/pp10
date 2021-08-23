@@ -1,24 +1,39 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { incrementCreator } from "./redux/actions";
+import { incrementCreator, decrementCreator } from "./redux/actions";
 
 let App = () => {
-  let state = useSelector(function(state){
-    return state
+  let state = useSelector(function (state) {
+    console.log(state);
+    return state;
   });
 
   let dispatch = useDispatch();
 
   return (
     <>
-      <button
+      {/* <button
         onClick={() => {
-          dispatch(incrementCreator());
+          dispatch(incrementCreator(1));
         }}
       >
-        +
+        +1
+      </button>
+      <button
+        onClick={() => {
+          dispatch(incrementCreator(10));
+        }}
+      >
+        +10
       </button>
       <p>{state}</p>
+      <button
+        onClick={() => {
+          dispatch(decrementCreator());
+        }}
+      >
+        -
+      </button> */}
     </>
   );
 };
