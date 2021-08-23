@@ -1,0 +1,31 @@
+.product-card {
+  height: 20rem;
+  width: 15rem;
+  box-shadow: 0px 0px 5px 0px rgba(170, 170, 170, 0.705);
+}
+
+.product-img {
+  height: 80%;
+}
+
+.product-btn {
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-btn button {
+  border: none;
+  outline: none;
+  background-color: #ffc312;
+  color: white;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.product-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
