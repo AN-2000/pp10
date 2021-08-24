@@ -1,9 +1,11 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { addCreator } from "../redux/actions";
 import "./preview.css";
 
 let Preview = () => {
   let { id } = useParams();
+  let dispatch = useDispatch();
   let state = useSelector((state) => state);
   let reqObject = state[id];
   return (
@@ -23,7 +25,13 @@ let Preview = () => {
             nihil. Molestiae dolorem, voluptate eum vel deserunt commodi ut.
             Ipsa ipsam cupiditate incidunt.
           </p>
-          <button>Add to Cart</button>
+          <button
+            onClick={() => {
+              dispatch(addCreator(reqObject.id));
+            }}
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </>
