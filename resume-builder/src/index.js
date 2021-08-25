@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import App from "./App";
-import userReducer from "./redux/reducers/userReducer";
+import rootReducer from "./redux/rootReducer";
 
-let myStore = createStore(userReducer);
+let myStore = createStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={myStore}>
