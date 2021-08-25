@@ -1,0 +1,10 @@
+.personal-container {
+  height: 92vh;
+  display: flex;
+  border: 1px solid red;
+}
+
+.personal-form {
+  border: 1px solid;
+  width: 50%;
+}
