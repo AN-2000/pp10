@@ -1,9 +1,12 @@
-import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
 
 let Login = () => {
-   let history = useHistory()
+  let history = useHistory();
+  let user = useSelector((state) => state);
   return (
     <>
+      {user ? <Redirect to="/home" /> : ""}
       <div className="row">
         <div className="col-4 offset-4">
           <h1 className="mt-4 mb-4">Login</h1>
@@ -32,9 +35,14 @@ let Login = () => {
             <button class="btn btn-primary">Login</button>
             <br />
             <br />
-            <button onClick={()=>{
-                history.push("/signup")
-            }} class="btn btn-primary">Sign Up</button>
+            <button
+              onClick={() => {
+                history.push("/signup");
+              }}
+              class="btn btn-primary"
+            >
+              Sign Up
+            </button>
           </form>
         </div>
       </div>
