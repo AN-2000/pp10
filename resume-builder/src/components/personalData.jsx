@@ -1,13 +1,15 @@
 import Preview from "./preview";
-import "./css/personal.css";
+import "./css/form.css";
 import { useDispatch, useSelector } from "react-redux";
 import { detailCreator } from "../redux/actions/detailsActions";
+import { useHistory } from "react-router-dom";
 
 let PersonalData = () => {
   let details = useSelector((state) => state.details);
-  console.log(details);
 
   let { fname, lname, email, phone, city, state } = details;
+
+  let history = useHistory();
 
   let dispatch = useDispatch();
 
@@ -88,7 +90,14 @@ let PersonalData = () => {
             </div>
           </div>
 
-          <button className="btn btn-primary m-4">Next</button>
+          <button
+            onClick={() => {
+              history.push("/qualifications");
+            }}
+            className="btn btn-primary m-4"
+          >
+            Next
+          </button>
         </div>
         <Preview />
       </div>

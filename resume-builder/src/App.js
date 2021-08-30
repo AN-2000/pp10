@@ -6,6 +6,7 @@ import Home from "./components/home";
 import Login from "./components/login";
 import Navbar from "./components/navbar";
 import PersonalData from "./components/personalData";
+import Qualifications from "./components/qualifications";
 import SignUp from "./components/signup";
 import { auth, firestore } from "./firebase";
 import { userCreator } from "./redux/actions/userActions";
@@ -40,6 +41,9 @@ let App = () => {
       <Router>
         <Navbar />
         <Switch>
+          <Route path="/qualifications">
+            <Qualifications />
+          </Route>
           <Route path="/personal">
             <PersonalData />
           </Route>
