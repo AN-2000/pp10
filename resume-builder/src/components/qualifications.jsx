@@ -13,6 +13,8 @@ let Qualifications = () => {
     (state) => state.details
   );
 
+  let { id } = useSelector((state) => state.saveState);
+
   let details = useSelector((state) => state.details);
   let code = useSelector((state) => state.template);
   let { uid } = useSelector((state) => state.user);
@@ -98,7 +100,14 @@ let Qualifications = () => {
         </div>
         <Preview />
       </div>
-      <button className="btn btn-primary qual-gen">Generate link</button>
+      <button
+        onClick={() => {
+          alert(`localhost:3000/publicpreview/${id}`);
+        }}
+        className="btn btn-primary qual-gen"
+      >
+        Generate link
+      </button>
       <button
         onClick={() => {
           dispatch(saveResume(uid, details, code));
