@@ -22,14 +22,14 @@ let PublicPreview = () => {
 
   return (
     <>
-      {previewData ? (
+      {previewData && previewData.details.isPublic ? (
         <>
           <p className={`template-${previewData.code}`}>
             {previewData.details.fname}
           </p>
         </>
       ) : (
-        ""
+        "Not available or not public"
       )}
     </>
   );

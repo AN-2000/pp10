@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux";
+import { useSelector,connect } from "react-redux";
 import "./css/preview.css";
 
-let Preview = () => {
+let Preview = (props) => {
   let { fname, lname, city, state, email, phone, cgpa, college, degree, year } =
     useSelector((state) => state.details);
 
@@ -24,4 +24,4 @@ let Preview = () => {
   );
 };
 
-export default Preview;
+export default connect(mapStatetoProps)(Preview);
