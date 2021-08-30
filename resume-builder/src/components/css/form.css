@@ -1,8 +1,22 @@
-.personal-container,.qual-container {
+.personal-container,
+.qual-container {
   height: 92vh;
   display: flex;
 }
 
-.personal-form,.qual-form {
+.personal-form,
+.qual-form {
   width: 50%;
+}
+
+.qual-gen {
+  position: fixed;
+  bottom: 12rem;
+  right: 40px;
+}
+
+.qual-save {
+  position: fixed;
+  bottom: 8rem;
+  right: 40px;
 }

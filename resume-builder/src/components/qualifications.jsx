@@ -3,11 +3,19 @@ import Preview from "./preview";
 import "./css/form.css";
 
 import { detailCreator } from "../redux/actions/detailsActions";
+import { saveResume } from "../redux/actions/saveActions";
 import { useHistory } from "react-router";
 let Qualifications = () => {
   let history = useHistory();
   let dispatch = useDispatch();
-  let { degree, cgpa, year, college } = useSelector((state) => state.details);
+
+  let { degree, cgpa, year, college, isPublic } = useSelector(
+    (state) => state.details
+  );
+
+  let details = useSelector((state) => state.details);
+  let code = useSelector((state) => state.template);
+  let { uid } = useSelector((state) => state.user);
 
   return (
     <>
@@ -65,11 +73,16 @@ let Qualifications = () => {
               <input
                 class="form-check-input"
                 type="checkbox"
-                value=""
+                checked={isPublic}
+                onClick={(e) => {
+                  dispatch(
+                    detailCreator({ isPublic: e.currentTarget.checked })
+                  );
+                }}
                 id="flexCheckDefault"
               />
               <label class="form-check-label" for="flexCheckDefault">
-                Default checkbox
+                Make public
               </label>
             </div>
           </div>
@@ -85,6 +98,15 @@ let Qualifications = () => {
         </div>
         <Preview />
       </div>
+      <button className="btn btn-primary qual-gen">Generate link</button>
+      <button
+        onClick={() => {
+          dispatch(saveResume(uid, details, code));
+        }}
+        className="btn btn-primary qual-save"
+      >
+        Save to Database
+      </button>
     </>
   );
 };
